@@ -8,14 +8,14 @@ import { drizzle as drizzlePglite } from 'drizzle-orm/pglite';
 import { migrate as migratePglite } from 'drizzle-orm/pglite/migrator';
 import { PHASE_PRODUCTION_BUILD } from 'next/dist/shared/lib/constants';
 import { Client } from 'pg';
-import { Env } from './Env';
+import { env } from './Env';
 
 let client;
 let drizzle;
 
-if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD && Env.DATABASE_URL) {
+if (process.env.NEXT_PHASE !== PHASE_PRODUCTION_BUILD && env.DATABASE_URL) {
   client = new Client({
-    connectionString: Env.DATABASE_URL,
+    connectionString: env.DATABASE_URL,
   });
   await client.connect();
 
