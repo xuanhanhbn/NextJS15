@@ -1,8 +1,8 @@
-import { LocaleSwitcher } from '@/components/LocaleSwitcher';
-import { SignOutButton } from '@/components/SignOutButton';
-import { BaseTemplate } from '@/templates/BaseTemplate';
+import { SignOutButton } from '@clerk/nextjs';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
+import { LocaleSwitcher } from '@/components/LocaleSwitcher';
+import { BaseTemplate } from '@/templates/BaseTemplate';
 
 export default async function DashboardLayout(props: {
   children: React.ReactNode;
@@ -40,8 +40,13 @@ export default async function DashboardLayout(props: {
       rightNav={(
         <>
           <li>
-            <SignOutButton>{t('sign_out')}</SignOutButton>
+            <SignOutButton>
+              <button className="border-none text-gray-700 hover:text-gray-900" type="button">
+                {t('sign_out')}
+              </button>
+            </SignOutButton>
           </li>
+
           <li>
             <LocaleSwitcher />
           </li>

@@ -1,6 +1,6 @@
-import { getI18nPath } from '@/utils/Helpers';
-import { signIn } from 'next-auth/react';
+import { SignUp } from '@clerk/nextjs';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getI18nPath } from '@/utils/Helpers';
 
 type ISignUpPageProps = {
   params: Promise<{ locale: string }>;
@@ -24,15 +24,6 @@ export default async function SignUpPage(props: ISignUpPageProps) {
   setRequestLocale(locale);
 
   return (
-    <div className="flex flex-col items-center space-y-4">
-      <h1 className="text-2xl font-bold">Sign Up</h1>
-      <p className="text-gray-600">Sign up using your Keycloak account</p>
-      <button
-        onClick={() => signIn('keycloak', { callbackUrl: getI18nPath('/dashboard', locale) })}
-        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-      >
-        Continue with Keycloak
-      </button>
-    </div>
+    <SignUp path={getI18nPath('/sign-up', locale)} />
   );
-}
+};

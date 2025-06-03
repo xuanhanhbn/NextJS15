@@ -1,3 +1,93 @@
+# [3.68.0](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.67.3...v3.68.0) (2025-06-02)
+
+
+### Bug Fixes
+
+* add priority for lefthook scripts ([875266a](https://github.com/ixartz/Next-js-Boilerplate/commit/875266a6bcd4e8d0f14f88202d54072ee30e7ab8))
+* change default screenshot directory for vitest browser mode ([718b16a](https://github.com/ixartz/Next-js-Boilerplate/commit/718b16a471c6a7c1ea8a4090bdcbd77f8cca75b7))
+* ensure fixed files are staged in pre-commit linting ([d0de38c](https://github.com/ixartz/Next-js-Boilerplate/commit/d0de38c7923af3090886116821aecfb0b6a0dc04))
+
+
+### Features
+
+* replace husky + lint-staged by lefthook ([ff7babc](https://github.com/ixartz/Next-js-Boilerplate/commit/ff7babc0954bfd3fe8c2486571e3d72f3c7e796c))
+* use vitest browser mode instead of [@testing-library](https://github.com/testing-library) ([f22cb49](https://github.com/ixartz/Next-js-Boilerplate/commit/f22cb4937a0b7b3d4c0882ef01d1e55da7a4d208))
+
+## [3.67.3](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.67.2...v3.67.3) (2025-05-31)
+
+
+### Bug Fixes
+
+* ensure page refreshes to reflect new locale in LocaleSwitcher ([0707e50](https://github.com/ixartz/Next-js-Boilerplate/commit/0707e508a00d12fb69f5232a0296d54814e95fc2))
+* update type definitions for next-intl module ([b1381b1](https://github.com/ixartz/Next-js-Boilerplate/commit/b1381b1666bdb3d53e45779183fa2fbf9f094f8f))
+
+## [3.67.2](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.67.1...v3.67.2) (2025-05-09)
+
+
+### Bug Fixes
+
+* group dependabot all updates into a single PR ([ba74448](https://github.com/ixartz/Next-js-Boilerplate/commit/ba7444821f896d4d02f8f17124d0e1adb20fe922))
+* typo in dependabot.yml config file ([2c6933d](https://github.com/ixartz/Next-js-Boilerplate/commit/2c6933d73d24bd6b8f6b45207b5550611372fad1))
+
+## [3.67.1](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.67.0...v3.67.1) (2025-05-09)
+
+
+### Bug Fixes
+
+* update dependabot cron schedule to run at 00:45 UTC ([d59ed9f](https://github.com/ixartz/Next-js-Boilerplate/commit/d59ed9f889ecce77d369246399f2058450c6664a))
+
+# [3.67.0](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.66.6...v3.67.0) (2025-05-08)
+
+
+### Bug Fixes
+
+* update dependabot schedule to check for npm updates at 1 AM ([1b5358b](https://github.com/ixartz/Next-js-Boilerplate/commit/1b5358b5e019d8c1b5ff319eaeecefea6d3b9273))
+* update robots.txt to disallow access to the dashboard ([5f510d9](https://github.com/ixartz/Next-js-Boilerplate/commit/5f510d9c0acc089a51f31f85e00df7a155621b7e))
+
+
+### Features
+
+* add dependabot configuration for npm package updates ([7891616](https://github.com/ixartz/Next-js-Boilerplate/commit/789161629c1cd473fec6088980499233468097ec))
+
+## [3.66.6](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.66.5...v3.66.6) (2025-05-07)
+
+
+### Bug Fixes
+
+* disable sentry when debugging with vscode ([67309fe](https://github.com/ixartz/Next-js-Boilerplate/commit/67309fe21659659972b621d2113b2a8eefca52f1))
+* in instrumentation client, add environment variable to disable sentry ([7963565](https://github.com/ixartz/Next-js-Boilerplate/commit/79635655cb3e09494689fcddfe852f90faa3cad1))
+
+## [3.66.5](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.66.4...v3.66.5) (2025-05-04)
+
+
+### Bug Fixes
+
+* add next-intl 4 and rewrite next.config.ts ([b468271](https://github.com/ixartz/Next-js-Boilerplate/commit/b468271f9922f95497c5b46733a194023c3c4458))
+* remove suppressHydrationWarning not needed anymore ([be70570](https://github.com/ixartz/Next-js-Boilerplate/commit/be705709eb65986bde67097af5d4cdf01f5915fc))
+* update configuration after updating to next-intl 4 ([0b60f1c](https://github.com/ixartz/Next-js-Boilerplate/commit/0b60f1c492df8d89f3fe9d22aefbdb1b28410b20))
+
+## [3.66.4](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.66.3...v3.66.4) (2025-05-03)
+
+
+### Bug Fixes
+
+* add noImplicitOverride option to tsconfig.json for stricter type checking ([0b23f5d](https://github.com/ixartz/Next-js-Boilerplate/commit/0b23f5dc4a9b3252954b0c160befa7a1d969f12d))
+* use autoImportSpecifierExcludeRegexes instead of autoImportFileExcludePatterns in TS config ([19d783f](https://github.com/ixartz/Next-js-Boilerplate/commit/19d783f866ee363cc36f892910b03bbb00005178))
+
+## [3.66.3](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.66.2...v3.66.3) (2025-04-25)
+
+
+### Bug Fixes
+
+* enhance ESLint configuration with comments and structure improvements ([16da265](https://github.com/ixartz/Next-js-Boilerplate/commit/16da265927ca869f43a22a90bc9c6f1f14dadead))
+* regenerate the migrations folder ([64ef5ec](https://github.com/ixartz/Next-js-Boilerplate/commit/64ef5ec4534a7580834392059c798776cac02218))
+* remove csstools.postcss from VSCode extensions recommendations ([a9f9510](https://github.com/ixartz/Next-js-Boilerplate/commit/a9f95105350c5b44dea405bdc4e82d34b15a7e29))
+* remove verbatimModuleSyntax to support Checkly configuration ([f039e90](https://github.com/ixartz/Next-js-Boilerplate/commit/f039e90b61a45cec9e9e0b361baf8dd5449aacbc))
+* reorganize tsconfig.json with improved comments and structure ([9a87712](https://github.com/ixartz/Next-js-Boilerplate/commit/9a87712d8aed7f4b686f7aaa581196afaab866b2))
+* update ESLint settings for code actions on save ([afcbced](https://github.com/ixartz/Next-js-Boilerplate/commit/afcbced2ac72f3524da6a6c6d024a381566f6fbd))
+* update gitignore files ([7a91472](https://github.com/ixartz/Next-js-Boilerplate/commit/7a91472a78be83ab93c34b2ad9a4b3891d0ee783))
+* update tsconfig.json to include vitest types and refine file exclusions ([6cb051d](https://github.com/ixartz/Next-js-Boilerplate/commit/6cb051d6ec25e8edcc3a4c5f619519afa0cbea77))
+
 ## [3.66.2](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.66.1...v3.66.2) (2025-04-12)
 
 

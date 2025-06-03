@@ -1,23 +1,23 @@
 'use client';
 
-import { env } from '@/libs/Env';
 import posthog from 'posthog-js';
 import { PostHogProvider as PHProvider } from 'posthog-js/react';
 import { useEffect } from 'react';
+import { Env } from '@/libs/Env';
 import { SuspendedPostHogPageView } from './PostHogPageView';
 
 export const PostHogProvider = (props: { children: React.ReactNode }) => {
   useEffect(() => {
-    if (env.NEXT_PUBLIC_POSTHOG_KEY) {
-      posthog.init(env.NEXT_PUBLIC_POSTHOG_KEY, {
-        api_host: env.NEXT_PUBLIC_POSTHOG_HOST,
+    if (Env.NEXT_PUBLIC_POSTHOG_KEY) {
+      posthog.init(Env.NEXT_PUBLIC_POSTHOG_KEY, {
+        api_host: Env.NEXT_PUBLIC_POSTHOG_HOST,
         capture_pageview: false, // Disable automatic pageview capture, as we capture manually
         capture_pageleave: true, // Enable pageleave capture
       });
     }
   }, []);
 
-  if (!env.NEXT_PUBLIC_POSTHOG_KEY) {
+  if (!Env.NEXT_PUBLIC_POSTHOG_KEY) {
     return props.children;
   }
 

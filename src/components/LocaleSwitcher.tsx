@@ -1,9 +1,10 @@
 'use client';
 
 import type { ChangeEventHandler } from 'react';
-import { routing, usePathname } from '@/libs/i18nNavigation';
 import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import { usePathname } from '@/libs/i18nNavigation';
+import { routing } from '@/libs/i18nRouting';
 
 export const LocaleSwitcher = () => {
   const router = useRouter();
@@ -12,7 +13,7 @@ export const LocaleSwitcher = () => {
 
   const handleChange: ChangeEventHandler<HTMLSelectElement> = (event) => {
     router.push(`/${event.target.value}${pathname}`);
-    router.refresh();
+    router.refresh(); // Ensure the page takes the new locale into account related to the issue #395
   };
 
   return (

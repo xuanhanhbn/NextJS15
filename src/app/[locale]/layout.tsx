@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 import { PostHogProvider } from '@/components/analytics/PostHogProvider';
 import { DemoBadge } from '@/components/DemoBadge';
-import { routing } from '@/libs/i18nNavigation';
-import { SessionProvider } from 'next-auth/react';
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { routing } from '@/libs/i18nRouting';
 import '@/styles/global.css';
 
 export const metadata: Metadata = {
@@ -43,27 +42,21 @@ export default async function RootLayout(props: {
 }) {
   const { locale } = await props.params;
 
-  if (!routing.locales.includes(locale)) {
+  if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
 
   setRequestLocale(locale);
-  const messages = await getMessages();
 
   return (
     <html lang={locale}>
-      <body suppressHydrationWarning>
-        <SessionProvider>
-          <NextIntlClientProvider
-            locale={locale}
-            messages={messages}
-          >
-            <PostHogProvider>
-              {props.children}
-            </PostHogProvider>
-            <DemoBadge />
-          </NextIntlClientProvider>
-        </SessionProvider>
+      <body>
+        <NextIntlClientProvider>
+          <PostHogProvider>
+            {props.children}
+          </PostHogProvider>
+          <DemoBadge />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

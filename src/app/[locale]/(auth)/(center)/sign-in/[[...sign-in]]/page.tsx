@@ -1,6 +1,6 @@
-import { getI18nPath } from '@/utils/Helpers';
-import { signIn } from 'next-auth/react';
+import { SignIn } from '@clerk/nextjs';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { getI18nPath } from '@/utils/Helpers';
 
 type ISignInPageProps = {
   params: Promise<{ locale: string }>;
@@ -24,14 +24,6 @@ export default async function SignInPage(props: ISignInPageProps) {
   setRequestLocale(locale);
 
   return (
-    <div className="flex flex-col items-center space-y-4">
-      <h1 className="text-2xl font-bold">Sign In</h1>
-      <button
-        onClick={() => signIn('keycloak', { callbackUrl: getI18nPath('/dashboard', locale) })}
-        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-      >
-        Sign in with Keycloak
-      </button>
-    </div>
+    <SignIn path={getI18nPath('/sign-in', locale)} />
   );
-}
+};
