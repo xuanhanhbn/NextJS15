@@ -1,3 +1,10 @@
+# 1.0.0 (2025-06-03)
+
+
+### Bug Fixes
+
+* **server:** send cors headers ([9de567d](https://github.com/xuanhanhbn/NextJS15/commit/9de567d2484b3804222a0cda9f245d898f5ea1cd))
+
 # [3.68.0](https://github.com/ixartz/Next-js-Boilerplate/compare/v3.67.3...v3.68.0) (2025-06-02)
 
 
