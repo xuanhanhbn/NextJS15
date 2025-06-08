@@ -61,7 +61,7 @@
   },
   "Dashboard": {
     "meta_title": "Tableau de bord",
-    "hello_message": "Bonjour {email}!",
+    "hello_message": "Bonjour {userName}!",
     "alternative_message": "Vous voulez créer votre SaaS plus rapidement en utilisant la même stack ? Essayez <url></url>."
   },
   "UserProfile": {

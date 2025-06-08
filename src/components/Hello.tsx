@@ -10,7 +10,7 @@ export const Hello = async () => {
     <>
       <p>
         {`👋 `}
-        {t('hello_message', { email: user?.primaryEmailAddress?.emailAddress ?? '' })}
+        {t('hello_message', { userName: user?.username ?? '' })}
       </p>
       <p>
         {t.rich('alternative_message', {

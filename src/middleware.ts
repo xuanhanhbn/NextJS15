@@ -8,16 +8,16 @@ import { routing } from './libs/i18nRouting';
 
 const handleI18nRouting = createMiddleware(routing);
 
+const isProtectedRoute = createRouteMatcher([
+  '/dashboard(.*)',
+  '/:locale/dashboard(.*)',
+]);
+
 const isAuthPage = createRouteMatcher([
   '/sign-in(.*)',
   '/:locale/sign-in(.*)',
   '/sign-up(.*)',
   '/:locale/sign-up(.*)',
-]);
-
-const isPublicRoute = createRouteMatcher([
-  '/about(.*)',
-  '/:locale/about(.*)',
 ]);
 
 // Improve security with Arcjet
@@ -48,46 +48,32 @@ export default async function middleware(
     }
   }
 
-  return clerkMiddleware(async (auth, req) => {
-    const pathname = req.nextUrl.pathname;
-    const locale = pathname.match(/^\/([^/]+)/)?.at(1) ?? '';
-    const signInUrl = new URL(`${locale ? `/${locale}` : ''}/sign-in`, req.url);
-    const homeUrl = new URL(`${locale ? `/${locale}` : ''}/`, req.url);
+  // Clerk keyless mode doesn't work with i18n, this is why we need to run the middleware conditionally
+  if (
+    isAuthPage(request) || isProtectedRoute(request)
+  ) {
+    return clerkMiddleware(async (auth, req) => {
+      if (isProtectedRoute(req)) {
+        const locale = req.nextUrl.pathname.match(/(\/.*)\/dashboard/)?.at(1) ?? '';
 
-    try {
-      // Kiểm tra trạng thái đăng nhập
-      await auth.protect();
+        const signInUrl = new URL(`${locale}/sign-in`, req.url);
 
-      // Nếu đã đăng nhập
-      if (isAuthPage(req)) {
-        // Nếu đang ở trang auth, chuyển về home
-        return NextResponse.redirect(homeUrl);
+        await auth.protect({
+          unauthenticatedUrl: signInUrl.toString(),
+
+        });
       }
 
-      // Nếu đang ở trang gốc (/), cho phép truy cập
-      if (pathname === '/' || pathname === `/${locale}`) {
-        return handleI18nRouting(request);
-      }
-    } catch {
-      // Nếu chưa đăng nhập
-      if (!isAuthPage(req) && !isPublicRoute(req)) {
-        // Nếu đang ở bất kỳ trang nào khác ngoại trừ auth và public, chuyển về sign-in
-        return NextResponse.redirect(signInUrl);
-      }
+      return handleI18nRouting(request);
+    })(request, event);
+  }
 
-      // Nếu đang ở trang gốc (/), chuyển về sign-in
-      if (pathname === '/' || pathname === `/${locale}`) {
-        return NextResponse.redirect(signInUrl);
-      }
-    }
-
-    return handleI18nRouting(request);
-  })(request, event);
+  return handleI18nRouting(request);
 }
 
 export const config = {
   // Match all pathnames except for
   // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
   // - … the ones containing a dot (e.g. `favicon.ico`)
-  matcher: '/((?!_next|_vercel|monitoring|api|trpc|.*\\..*).*)',
+  matcher: '/((?!_next|_vercel|monitoring|.*\\..*).*)',
 };
